@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-app
+  labels:
+    app: django-web-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: django-web-app
+  template:
+    metadata:
+      labels:
+        app: django-web-app
+    spec:
+      containers:
+      - name: django
+        image: docker-demo-run:1.0
+        ports:
+        - containerPort: 8000
